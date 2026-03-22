@@ -1,6 +1,13 @@
+# Note for Bringgsters
+
+This is a fork of https://github.com/jorroll/ice_cube, We use the "full_tz" branch.
+
+The fork is done to add support for Ruby 4.
+
+
 # ice_cube - Easy schedule expansion
 
-[![Build Status][travis-ice_cube-badge_image]][travis-ice_cube]
+[![CI](https://github.com/bringg/ice_cube/actions/workflows/ci.yml/badge.svg)](https://github.com/bringg/ice_cube/actions/workflows/ci.yml)
 [![Gem Version](https://badge.fury.io/rb/ice_cube.svg)](http://badge.fury.io/rb/ice_cube)
 
 ```bash
@@ -315,8 +322,6 @@ Use the GitHub [issue tracker][ice_cube-issues]
 
 [ical-3.6.1]: https://tools.ietf.org/html/rfc5545#section-3.6.1
 [github-avit]: https://github.com/avit/
-[travis-ice_cube]: http://travis-ci.org/seejohnrun/ice_cube
-[travis-ice_cube-badge_image]: https://secure.travis-ci.org/seejohnrun/ice_cube.svg
 [ice_cube-lone_star_pdf]: http://seejohnrun.github.com/ice_cube/static/lsrc_ice_cube.pdf
 [ice_cube-ruby_nyc_pdf]: http://seejohnrun.github.com/ice_cube/static/ice_cube_ruby_nyc.pdf
 [ice_cube-docs]: http://seejohnrun.github.com/ice_cube/

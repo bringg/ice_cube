@@ -1,4 +1,4 @@
-require 'active_support/time'
+require File.expand_path('../active_support_time', __dir__)
 require File.dirname(__FILE__) + '/../spec_helper'
 
 describe IceCube::Schedule do
@@ -17,7 +17,7 @@ describe IceCube::Schedule do
       let(:start_time) { Time.now.in_time_zone("America/Vancouver") }
 
       it "serializes time as a Hash" do
-        hash = YAML.load(yaml)
+        hash = IceCube.load_yaml(yaml)
         expect(hash[:start_time][:time]).to eq start_time.utc
         expect(hash[:start_time][:zone]).to eq "America/Vancouver"
       end

@@ -118,7 +118,7 @@ module IceCube
           expect(schedule.occurring_between?(t0, t1)).to be_truthy
         end
 
-        require 'active_support/time'
+        require File.expand_path('../active_support_time', __dir__)
 
         it 'should not hang next_time on DST boundary [#98]', expect_warnings: true do # set local to Sweden
           schedule = Schedule.from_yaml <<-EOS

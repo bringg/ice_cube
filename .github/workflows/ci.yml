@@ -1,0 +1,40 @@
+name: CI
+
+on:
+  push:
+    branches: [full_tz, master]
+  pull_request:
+    branches: [full_tz, master]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      # Ruby maintenance status: https://www.ruby-lang.org/en/downloads/branches/
+      # Rails ↔ Ruby minimums: https://guides.rubyonrails.org/upgrading_ruby_on_rails.html#ruby-versions
+      matrix:
+        ruby:
+          - '3.2'
+          - '3.3'
+          - '3.4'
+          - '4.0'
+        rails:
+          - '~> 7.2'
+          - '~> 8.0'
+          - '~> 8.1'
+
+    env:
+      RAILS_VERSION: ${{ matrix.rails }}
+
+    steps:
+      - uses: actions/checkout@v6
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+          # RAILS_VERSION changes resolved gems; keep cache distinct per matrix cell (no Gemfile.lock).
+          cache-version: "${{ matrix.ruby }}-${{ matrix.rails }}"
+
+      - name: Run tests
+        run: bundle exec rake

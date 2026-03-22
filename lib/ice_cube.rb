@@ -1,4 +1,5 @@
 require 'date'
+require 'yaml'
 require 'ice_cube/deprecated'
 
 module IceCube
@@ -86,5 +87,15 @@ module IceCube
 
   def self.compatibility=(version)
     @compatibility = version
+  end
+
+  # Psych 4+ (Ruby 3.1+) uses a safe YAML loader by default; persisted IceCube
+  # payloads may include Time, Date, Symbol, etc.
+  def self.load_yaml(yaml)
+    if RUBY_VERSION < "3.1"
+      YAML.safe_load(yaml, [Date, Symbol, Time], [], true)
+    else
+      YAML.safe_load(yaml, permitted_classes: [Date, Symbol, Time], aliases: true)
+    end
   end
 end

@@ -9,3 +9,4 @@ compatible_rails_versions = [
 gem 'activesupport', (ENV['RAILS_VERSION'] || compatible_rails_versions), require: false
 gem 'i18n', require: false
 gem 'tzinfo', require: false # only needed explicitly for RAILS_VERSION=3
+gem 'benchmark'

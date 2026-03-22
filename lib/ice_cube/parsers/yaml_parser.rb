@@ -8,7 +8,7 @@ module IceCube
     attr_reader :hash
 
     def initialize(yaml)
-      @hash = YAML::load(yaml)
+      @hash = IceCube.load_yaml(yaml)
       yaml.match SERIALIZED_START do |match|
         start_time = hash[:start_time] || hash[:start_date]
         TimeUtil.restore_deserialized_offset start_time, match[:tz]

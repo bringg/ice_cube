@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
-require 'active_support/time'
+require File.expand_path('../active_support_time', __dir__)
 
 describe IceCube, 'to_ical' do
 

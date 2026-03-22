@@ -1,4 +1,5 @@
 require File.dirname(__FILE__) + '/../spec_helper'
+require File.expand_path("../active_support_time", __dir__)
 
 describe Occurrence do
 
@@ -29,7 +30,19 @@ describe Occurrence do
       time_now = Time.current
       occurrence = Occurrence.new(time_now)
 
-      expect(occurrence.to_s(:short)).to eq time_now.to_s(:short)
+      # Match ActiveSupport formatting behavior across versions.
+      expected =
+        if time_now.respond_to?(:to_fs)
+          time_now.to_fs(:short)
+        elsif time_now.respond_to?(:to_formatted_s)
+          time_now.to_formatted_s(:short)
+        elsif time_now.public_method(:to_s).arity != 0
+          time_now.to_s(:short)
+        else
+          time_now.to_s
+        end
+
+      expect(occurrence.to_s(:short)).to eq expected
     end
   end
 

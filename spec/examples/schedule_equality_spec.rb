@@ -52,7 +52,7 @@ module IceCube
       end
 
       context "with ActiveSupport", requires_active_support: true do
-        require 'active_support/time'
+        require File.expand_path('../active_support_time', __dir__)
         let(:utc_tz) { ActiveSupport::TimeZone["Etc/UTC"] }
         let(:pst_tz) { ActiveSupport::TimeZone["America/Vancouver"] }
         let(:est_tz) { ActiveSupport::TimeZone["America/New_York"] }

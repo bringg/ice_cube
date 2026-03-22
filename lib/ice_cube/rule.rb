@@ -44,7 +44,7 @@ module IceCube
 
     # From yaml
     def self.from_yaml(yaml)
-      from_hash YAML::load(yaml)
+      from_hash IceCube.load_yaml(yaml)
     end
 
     def to_hash
